@@ -9,8 +9,8 @@
   },
   "author": "Pedro",
   "engines": {
-    "node": ">=12.18.3",
-    "npm": ">=6.14.6"
+    "node": "8.x",
+    "npm": ">= 3"
   },
   "dependencies": {
     "axios": "^0.27.2",
