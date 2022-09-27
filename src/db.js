@@ -3,6 +3,8 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 
+const { DATABASE_URL } = process.env;
+
 const sequelize = new Sequelize(DATABASE_URL, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
