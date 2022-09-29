@@ -168,7 +168,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", authAdmins, async (req, res) => {
   try {
     const { name } = req.query;
     const users = await getUserDB();
