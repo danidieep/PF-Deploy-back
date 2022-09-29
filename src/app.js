@@ -28,7 +28,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('https://artket-pf-deploy.herokuapp.com', routes);
+server.use('https://artket-pf-deploy.herokuapp.com/', routes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
