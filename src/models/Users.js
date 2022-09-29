@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
       },
       role: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: true,
         allowNull: false,
       },
       ban: {
