@@ -46,23 +46,13 @@ router.post("/delete/:artworkId", async (req, res) => {
   const { artworkId } = req.params;
   try {
     let artwork = await Artwork.findByPk(artworkId);
-    // console.log(artwork)
-    // if(!artwork){
-    //     res.send({error: 'id del producto no es valido'})
-    // }
     let user = await User.findOne({ where: { email } });
     let cart = await Cart.findOne({ where: { id: user.cartId } });
-    
-    let artworkInCart = await Artworkincart.findOne({where:{artworkId}})
+    let artworkInCart = await Artworkincart.findOne({ where: { artworkId } })
     let totalPrice = cart.totalPrice - artwork.price;
-    // console.log(total)
-    // let existsArtworkInCart = cart.Artworkincart.find((a) => a.artworkId === artworkId)
-    // if(existsArtworkInCart){
-    //     alert('esta obra ya esta en su carrito')
-    // }else{
     await deleteArtworkInCart(artworkInCart.dataValues.id);
     await updateCart(totalPrice, user.cartId);
-   
+
     res.status(200)
   } catch (err) {
     console.log(err);
@@ -92,7 +82,7 @@ router.get("/", async (req, res) => {
     });
     let detailArt = cart.artworkincarts
     let arr = []
-    detailArt.map(async (e)=>  arr.push(Artwork.findOne({where:{id:e.artworkId}})))
+    detailArt.map(async (e) => arr.push(Artwork.findOne({ where: { id: e.artworkId } })))
     await Promise.all(arr).then((resp) => {
       res.status(200).send(resp);
     })
@@ -109,7 +99,7 @@ router.get("/", async (req, res) => {
 //   try {
 //     let cart = await Cart.findAll();
 //     res.send(cart);
-//   } catch (error) {
+//   } catch (error) {gi
 //     console.log(error);
 //   }
 // });

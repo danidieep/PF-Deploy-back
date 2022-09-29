@@ -7,12 +7,14 @@ const getUserDB = async () => {
     return {
       id: u.id,
       cartId: u.cartId,
+      favId: u.favId,
       name: u.name,
       lastname: u.lastname,
       email: u.email,
       dateBorn: u.dateBorn,
       password: u.password,
       role: u.role,
+      ban: u.ban
     }
   });
 
