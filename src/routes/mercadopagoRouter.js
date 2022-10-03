@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     //     // }
     // },
     back_urls: {
-      success: "http://localhost:3000/MainPage",
+      success: "https://artket.vercel.app/MainPage",
       failure: "http://www.failure.com",
       pending: "http://www.pending.com",
     },
@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
       ],
       installments: 12,
     },
-    notification_url: `https://ad03-186-19-162-206.sa.ngrok.io/payment/notifications`,
+    notification_url: `https://artket-pf-deploy.herokuapp.com/payment/notifications`,
     statement_descriptor: "ARTKET",
   };
   try {
