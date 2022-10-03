@@ -33,6 +33,31 @@ const enviarMail = async (name, email, password) => {
   const info = await transport.sendMail(mensaje);
 };
 
+const restorePass = async (email, password) => {
+  const config = {
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "artketgalery@gmail.com",
+      pass: "vvvicqjzjkocwjtd",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  };
+
+  const mensaje = {
+    from: '"Arket" <artketgalery@gmail.com>',
+    to: email,
+    subject: "Artket",
+    text: `Your new password is ${password}`,
+  };
+
+  const transport = nodemailer.createTransport(config);
+  const info = await transport.sendMail(mensaje);
+};
+
 router.post("/findorcreate", async (req, res) => {
   const { email, name, lastname, password, dateBorn, role, idAuth } = req.body;
 
@@ -196,8 +221,9 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
     const userById = await User.findOne({ where: { id } });
     if (userById) {
-      const { id, cartId,image, favId, name, lastname, email } = userById.dataValues;
-      res.status(200).json({ id, cartId, image,  favId, name, lastname, email });
+      const { id, cartId, image, favId, name, lastname, email } =
+        userById.dataValues;
+      res.status(200).json({ id, cartId, image, favId, name, lastname, email });
     } else {
       res.send("no se ha encontrado un usuario con ese id");
     }
@@ -206,7 +232,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/:id", async (req, res) => {
+router.post("/ban/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { ban } = req.body;
@@ -242,6 +268,40 @@ router.post("/update", async (req, res) => {
     res.status(200).send("se actualize paa");
   } catch (error) {
     console.log(error);
+  }
+});
+
+const alph = "ABCDEFGHIJQLMNOPQRSTUVWXYZabcdefghijqlmnopqrstuvwxyz0123456789";
+
+function passGenerate(length = 10) {
+  let result = "";
+  for (let index = 0; index <= length; index++) {
+    result += alph.charAt(Math.floor(Math.random() * alph.length));
+  }
+  return result;
+}
+
+router.post("/restorePassword", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (email.length) {
+      const user = await User.findOne({ where: { email } });
+
+      const newPassword = await passGenerate(10);
+      let password = bcypt.hashSync(newPassword, 8);
+
+      if (user) {
+        await User.update({ password }, { where: { email } });
+        restorePass(email, newPassword);
+
+        res.status(200).send("se actualize paa");
+      } else {
+        res.status(400).send("el user no existe");
+      }
+    }
+  } catch (error) {
+    res.status(400).send("error");
   }
 });
 
