@@ -196,10 +196,10 @@ router.get("/orden", async (req, res) => {
   //mostrar una orden en particular
 
   const { payload } = req.headers;
-  console.log(payload, 'payload email back');
   try {
     if(payload){
     let pago = await Order.findOne({ where: { payEmail: payload } });
+    console.log(pago, 'soy la orden');
     let orders = await axios.get(
       `https://api.mercadopago.com/merchant_orders/search?payer_id=${pago.payId}`,
       {
