@@ -34,13 +34,16 @@ module.exports = (sequelize) => {
       },
       payEmail:{
         type: DataTypes.STRING,
-        // allowNull: false
+         allowNull: true
       },
       cancelled:{
         type: DataTypes.BOOLEAN,
       },
       order_status:{
         type: DataTypes.STRING,
+      },
+      adress:{
+        type:DataTypes.STRING
       }
     },
     { timestamps: false, createdAt: false, updatedAt: false }

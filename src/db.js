@@ -60,9 +60,6 @@ Artwork.belongsTo(User);
 Favourite.hasMany(Artworkinfav);
 Artworkinfav.belongsTo(Favourite);
 
-// Favourite.belongsToMany(Artwork,{ through: 'favourites'})
-// Artwork.belongsToMany(Favourite, { through: 'favourites'})
-
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
