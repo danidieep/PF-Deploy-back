@@ -196,7 +196,7 @@ router.get("/orden", async (req, res) => {
   //mostrar una orden en particular
 
   const { payload } = req.headers;
-  console.log(payload, 'payload email back');
+  console.log(req.headers, 'payload email back');
   try {
     if(payload){
     let pago = await Order.findOne({ where: { payEmail: payload } });
