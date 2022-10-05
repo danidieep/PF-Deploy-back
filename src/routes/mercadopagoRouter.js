@@ -253,7 +253,6 @@ router.get("/orden", async (req, res) => {
       adress: e.additional_info
     };
   });
-  res.send(response);
 
   } catch (error) {
     console.log(error);
