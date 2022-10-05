@@ -212,6 +212,7 @@ router.get("/orden", async (req, res) => {
     let datos = orders.data.elements;
    
     let response = datos.map((e) => {
+      console.log(e.items, 'e.items hoola');
       return {
         orderId: e.id,
         paymentId: e.payments[0].id,
@@ -239,6 +240,7 @@ router.get("/orden", async (req, res) => {
   let datos = orders.data.elements;
  
   let response = datos?.map((e) => {
+    console.log(e.items, 'e.items hoola');
     return {
       orderId: e.id,
       paymentId: e.payments[0]?.id,
