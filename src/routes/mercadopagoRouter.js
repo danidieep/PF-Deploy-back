@@ -156,7 +156,7 @@ router.post("/notifications", async (req, res) => {
             // adress: envio
           });
         }
-        const payment = Order.findOne({
+        const payment = await Order.findOne({
           where: { orderid: response.order.id },
         });
 
