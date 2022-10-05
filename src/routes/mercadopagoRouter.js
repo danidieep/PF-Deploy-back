@@ -196,6 +196,7 @@ router.get("/orden", async (req, res) => {
   //mostrar una orden en particular
 
   const { payload } = req.headers;
+  console.log(payload, 'payload email back');
   try {
     if(payload){
     let pago = await Order.findOne({ where: { payEmail: payload } });
@@ -212,7 +213,6 @@ router.get("/orden", async (req, res) => {
     let datos = orders.data.elements;
    
     let response = datos.map((e) => {
-      console.log(e.items, 'e.items hoola');
       return {
         orderId: e.id,
         paymentId: e.payments[0].id,
@@ -240,7 +240,6 @@ router.get("/orden", async (req, res) => {
   let datos = orders.data.elements;
  
   let response = datos?.map((e) => {
-    console.log(e.items, 'e.items hoola');
     return {
       orderId: e.id,
       paymentId: e.payments[0]?.id,
