@@ -160,7 +160,7 @@ router.post("/notifications", async (req, res) => {
           where: { orderid: response.order.id },
         });
 
-        if (!payment.length) {
+        if (!payment) {
           if (asd.length) {
             if (asd[0].paymentStatus == "approved") {
               await Order.bulkCreate(asd);
