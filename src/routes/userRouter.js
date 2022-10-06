@@ -236,7 +236,8 @@ router.put("/ban/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { ban } = req.body;
-    const user = User.update({ ban: !ban }, { where: { id } });
+    console.log(id, 'el anterior es id', ban, 'el anterior es ban');
+    const user = await User.update({ ban: !ban }, { where: { id } });
     res.status(200).send({ msg: "usuario banneado" });
   } catch (error) {
     res.status(400).send(error.message);
