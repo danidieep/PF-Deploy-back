@@ -11,21 +11,14 @@ You can visit the repository of the backend in my profile if you wish.
 
 ## BoilerPlate
 
-This repository is the backend of a project that I did with my partners. This project is a website where we sell artwork. On this site, the client can find artwork and buy it and other functions like registering, logging and filtering the work of art.
-Im decided to separate the repositorie of the project in the folder of backend and the frontend because its easier for the deveployment.
-For the deployment of the backend, I used a site called Heroku.
-The information about the project like functionalities, photos and objetives are in the repository called PF-Deploy-back.
-You can visit the repository of the frontend in my profile if you wish.
+The boilerplate has two folders: "PF-Deploy-front" and "PF-Deploy-back".
 
-
-El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
-
-En api crear un archivo llamado: .env que tenga la siguiente forma:
+In the folder "PF-Deploy-back" you must create an .env archive with the next strucuture.
 
 ```
-DB_USER=usuariodepostgres
-DB_PASSWORD=passwordDePostgres
+DB_USER=userpostgres
+DB_PASSWORD=passwordpostgres
 DB_HOST=localhost
 ```
 
-Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
+Replace the variables DB_USER and DB_PASSWORD with your own credentials.
